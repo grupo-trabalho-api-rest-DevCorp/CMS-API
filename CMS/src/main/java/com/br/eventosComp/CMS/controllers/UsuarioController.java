@@ -2,10 +2,9 @@ package com.br.eventosComp.CMS.controllers;
 
 import com.br.eventosComp.CMS.models.Usuario;
 import com.br.eventosComp.CMS.repositories.UsuarioRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class UsuarioController {
@@ -16,9 +15,18 @@ public class UsuarioController {
         this.repository = repository;
     }
 
-    @PostMapping Mapping("/cadastro"){
+    @PostMapping ("/cadastro")
+    Usuario novoUsuario(@RequestBody Usuario novoUsuario) {
 
+        return repository.save(novoUsuario);
     }
+
+    @GetMapping("/usuarios")
+    List<Usuario> all() {
+        return repository.findAll();
+    }
+
+
 
 
 
